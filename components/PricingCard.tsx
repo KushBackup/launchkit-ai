@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface PricingCardProps {
   name: string;
@@ -16,17 +16,17 @@ export default function PricingCard({ name, price, priceId, features, popular }:
   const handleCheckout = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ priceId, plan: name }),
       });
       
       const { url } = await response.json();
       if (url) window.location.href = url;
     } catch (error) {
-      console.error('Checkout error:', error);
-      alert('Something went wrong. Please try again.');
+      console.error("Checkout error:", error);
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -35,8 +35,8 @@ export default function PricingCard({ name, price, priceId, features, popular }:
   return (
     <div className={`border-2 rounded-xl p-8 hover:shadow-lg transition ${
       popular 
-        ? 'border-primary bg-gradient-to-b from-indigo-50 to-white transform scale-105 shadow-xl' 
-        : 'border-gray-200 hover:border-primary'
+        ? "border-primary bg-gradient-to-b from-indigo-50 to-white transform scale-105 shadow-xl" 
+        : "border-gray-200 hover:border-primary"
     }`}>
       {popular && (
         <div className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">
@@ -60,7 +60,7 @@ export default function PricingCard({ name, price, priceId, features, popular }:
         disabled={loading}
         className="block w-full bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed text-white text-center px-6 py-3 rounded-lg font-semibold transition"
       >
-        {loading ? 'Loading...' : 'Get Started'}
+        {loading ? "Loading..." : "Get Started"}
       </button>
     </div>
   );

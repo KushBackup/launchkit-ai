@@ -10,9 +10,9 @@ export default function Success() {
         <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left">
           <h2 className="font-bold text-lg mb-3">What happens next:</h2>
           <ul className="space-y-2 text-gray-700">
-            <li>✅ You'll receive a welcome email with onboarding instructions</li>
+            <li>✅ You"ll receive a welcome email with onboarding instructions</li>
             <li>✅ Our team will reach out within 24 hours to schedule your kickoff call</li>
-            <li>✅ We'll start working on your business immediately</li>
+            <li>✅ We"ll start working on your business immediately</li>
           </ul>
         </div>
         <a 

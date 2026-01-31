@@ -12,193 +12,240 @@ import { FAQ_ITEMS, FEATURE_COMPARISON } from "@/lib/faq";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-gray-200 sticky top-0 bg-white z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      {/* ZARA-style Minimal Header */}
+      <header className="border-b border-neutral-200 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
+        <div className="container-custom py-6">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-primary">🚀 LaunchKit AI</div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-primary font-medium transition">Features</a>
-              <a href="#how-it-works" className="text-gray-600 hover:text-primary font-medium transition">How It Works</a>
-              <a href="#pricing" className="text-gray-600 hover:text-primary font-medium transition">Pricing</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-primary font-medium transition">Testimonials</a>
-              <a href="#faq" className="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+            <div className="text-2xl font-headline tracking-tight">LAUNCHKIT</div>
+            <nav className="hidden md:flex space-x-10">
+              <a href="#philosophy" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Philosophy</a>
+              <a href="#process" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Process</a>
+              <a href="#pricing" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Pricing</a>
+              <a href="#clients" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Clients</a>
             </nav>
-            <a href="#pricing" className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition">
-              Get Started
+            <a href="#pricing" className="btn-primary">
+              Begin
             </a>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
-            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Build Your Business
-            </span>
-            <br />
-            in 2 Weeks
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            AI agent that autonomously builds your complete business—from market research to deployed product to closed customers. No coding required.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <a href="#pricing" className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg text-lg font-semibold transition">
-              Start Building →
-            </a>
-            <a href="#how-it-works" className="bg-white border-2 border-primary text-primary hover:bg-gray-50 px-8 py-4 rounded-lg text-lg font-semibold transition">
-              See How It Works
-            </a>
-          </div>
-          <p className="text-sm text-gray-500 mb-8">
-            ✨ 50+ businesses launched • $500k+ in customer revenue generated
-          </p>
-
-          {/* Email Waitlist */}
-          <div className="max-w-lg mx-auto">
-            <EmailWaitlist />
+      {/* Hero - Full-width, Minimal, Impactful */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
+            <h1 className="text-hero font-headline mb-8 text-balance">
+              Build Your<br />Business<br />in Two Weeks
+            </h1>
+            <p className="text-body-lg text-neutral-600 mb-12 max-w-2xl mx-auto">
+              Autonomous AI execution. From concept to deployed product to closed deals. No meetings. No delays. Just results.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <a href="#pricing" className="btn-primary">
+                Start Building
+              </a>
+              <a href="#process" className="btn-secondary">
+                Our Process
+              </a>
+            </div>
+            <div className="flex justify-center gap-12 text-sm text-neutral-500 uppercase tracking-luxury">
+              <div>50+ Businesses</div>
+              <div className="border-l border-neutral-300"></div>
+              <div>$500k Revenue</div>
+              <div className="border-l border-neutral-300"></div>
+              <div>14 Days Avg</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof Stats */}
-      <SocialProofStats {...SOCIAL_PROOF} />
+      {/* Philosophy Section (ZARA-style full-width image + text) */}
+      <section id="philosophy" className="section-padding bg-neutral-50">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="animate-slide-up">
+              <p className="text-caption uppercase tracking-luxury text-neutral-500 mb-4">Our Philosophy</p>
+              <h2 className="text-display font-headline mb-8">Speed Is The New Competitive Advantage</h2>
+              <p className="text-body text-neutral-600 mb-6 leading-relaxed">
+                Most businesses fail not from bad ideas, but from slow execution. Six months to launch. Three months in development hell. Endless meetings with agencies.
+              </p>
+              <p className="text-body text-neutral-600 mb-6 leading-relaxed">
+                We eliminate all of that. Our AI autonomously builds your complete business—market research, product development, customer acquisition—in 14 days.
+              </p>
+              <p className="text-body text-neutral-600 leading-relaxed">
+                No hand-holding. No back-and-forth. Just pure execution.
+              </p>
+            </div>
+            <div className="aspect-[4/5] bg-neutral-200 rounded-sm"></div>
+          </div>
+        </div>
+      </section>
 
-      {/* Features */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Everything You Need to Launch</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Process Section (Clean, numbered steps) */}
+      <section id="process" className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <p className="text-caption uppercase tracking-luxury text-neutral-500 mb-4">How We Work</p>
+            <h2 className="text-display font-headline">Three Steps to Market</h2>
+          </div>
+          
+          <div className="max-w-5xl mx-auto space-y-20">
             {[
-              { icon: "📊", title: "Market Research", desc: "Deep analysis of your market, competitors, and customer segments. Know exactly what to build and who to sell to." },
-              { icon: "🎨", title: "Product Development", desc: "Landing page, MVP, and full product deployment. From design to live site in days, not months." },
-              { icon: "🎯", title: "Lead Generation", desc: "200+ qualified leads per month. We find your customers, not the other way around." },
-              { icon: "📧", title: "Sales Outreach", desc: "Personalized cold emails, follow-ups, and demo booking. We handle the heavy lifting." },
-              { icon: "🚀", title: "Launch Strategy", desc: "Product Hunt, Reddit, social media campaigns. Maximum visibility from day one." },
-              { icon: "💰", title: "Investor Outreach", desc: "Pitch deck creation and warm intros to relevant investors. Fundraising made simple." }
-            ].map((feature, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
-                <div className="text-5xl mb-4">{feature.icon}</div>
-                <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+              { 
+                num: "01", 
+                title: "Research & Strategy", 
+                desc: "Deep market analysis. Competitor landscape. Customer segments. Positioning strategy. Everything documented in 24 hours.",
+                deliverables: ["Market Analysis Report", "Competitor Deep-Dive", "Customer Personas", "Go-to-Market Strategy"]
+              },
+              { 
+                num: "02", 
+                title: "Build & Deploy", 
+                desc: "Landing page. MVP product. Payment processing. Analytics. Deployed to production. Live URL. Ready to accept customers.",
+                deliverables: ["Landing Page", "Full Product/MVP", "Stripe Integration", "Analytics Setup"]
+              },
+              { 
+                num: "03", 
+                title: "Launch & Scale", 
+                desc: "Lead generation. Cold outreach. Product Hunt launch. First 10 customers. Investor intros. Revenue in week one.",
+                deliverables: ["100+ Leads", "Email Campaigns", "Launch Strategy", "Customer Acquisition"]
+              }
+            ].map((step) => (
+              <div key={step.num} className="grid md:grid-cols-12 gap-8 items-start">
+                <div className="md:col-span-2">
+                  <div className="text-6xl font-headline text-neutral-300">{step.num}</div>
+                </div>
+                <div className="md:col-span-10">
+                  <h3 className="text-title font-headline mb-4">{step.title}</h3>
+                  <p className="text-body text-neutral-600 mb-6 leading-relaxed">{step.desc}</p>
+                  <div className="flex flex-wrap gap-3">
+                    {step.deliverables.map((item, i) => (
+                      <span key={i} className="text-caption uppercase tracking-luxury px-4 py-2 border border-neutral-300 text-neutral-700">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">How It Works</h2>
-          <div className="max-w-4xl mx-auto space-y-12">
+      {/* Capabilities Grid (ZARA-style grid layout) */}
+      <section className="section-padding bg-neutral-50">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <h2 className="text-display font-headline">Complete Business Build</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-px bg-neutral-300">
             {[
-              { step: "1", title: "Share Your Idea", desc: "Tell us your business concept in plain English. No business plan needed." },
-              { step: "2", title: "AI Builds Everything", desc: "Our AI conducts market research, builds your product, generates leads, and creates marketing materials—all autonomously." },
-              { step: "3", title: "Launch & Grow", desc: "We handle Product Hunt launch, cold outreach, investor connections. You focus on closing deals." },
-              { step: "4", title: "Get Your First Customer", desc: "Within 2 weeks, you will have a live product and qualified leads in your inbox. No coding, no guesswork." }
-            ].map((item) => (
-              <div key={item.step} className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold">
-                  {item.step}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{item.desc}</p>
-                </div>
+              { icon: "📊", title: "Market Research", desc: "Deep analysis. Competitor intel. Customer insights." },
+              { icon: "🎨", title: "Product Design", desc: "Landing pages. MVP builds. Full deployments." },
+              { icon: "🎯", title: "Lead Generation", desc: "200+ qualified leads. Monthly pipeline filled." },
+              { icon: "📧", title: "Sales Outreach", desc: "Cold emails. Follow-ups. Demo bookings." },
+              { icon: "🚀", title: "Launch Strategy", desc: "Product Hunt. Social media. Maximum reach." },
+              { icon: "💰", title: "Investor Outreach", desc: "Pitch decks. Warm intros. Fundraising support." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white p-10 hover:bg-neutral-50 transition-all duration-300 group">
+                <div className="text-4xl mb-6">{item.icon}</div>
+                <h3 className="text-subtitle font-headline mb-3 group-hover:text-primary transition">{item.title}</h3>
+                <p className="text-body text-neutral-600">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <div id="testimonials">
-        <TestimonialsSection testimonials={TESTIMONIALS} />
-      </div>
+      {/* Pricing - ZARA-style minimal cards */}
+      <section id="pricing" className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <p className="text-caption uppercase tracking-luxury text-neutral-500 mb-4">Investment</p>
+            <h2 className="text-display font-headline mb-6">Choose Your Plan</h2>
+            <p className="text-body text-neutral-600 max-w-2xl mx-auto">
+              One-time payment. No subscriptions. Full ownership of everything we build.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {PRICING_PLANS.map((plan, index) => (
+              <PricingCard key={plan.name} plan={plan} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials - ZARA-style minimal testimonials */}
+      <TestimonialsSection testimonials={TESTIMONIALS} />
 
       {/* Feature Comparison */}
-      <FeatureComparison {...FEATURE_COMPARISON} />
-
-      {/* Pricing */}
-      <section id="pricing" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {PRICING_PLANS.map((plan) => (
-              <PricingCard 
-                key={plan.name} 
-                name={plan.name}
-                price={plan.monthlyPrice}
-                priceId={plan.priceId.monthly}
-                features={plan.features}
-                popular={plan.popular}
-              />
-            ))}
-          </div>
-          <p className="text-center mt-8 text-gray-600">
-            💡 <strong>All plans include:</strong> Full source code ownership, 14-day money-back guarantee, no lock-in
-          </p>
+      <section className="section-padding bg-neutral-50">
+        <div className="container-custom">
+          <FeatureComparison competitors={FEATURE_COMPARISON.competitors} categories={FEATURE_COMPARISON.categories} />
         </div>
       </section>
 
       {/* FAQ */}
-      <FAQSection items={FAQ_ITEMS} />
+      <section id="faq" className="section-padding">
+        <div className="container-custom max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-display font-headline">Common Questions</h2>
+          </div>
+          <FAQSection items={FAQ_ITEMS} />
+        </div>
+      </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary to-purple-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Build Your Business?</h2>
-          <p className="text-xl mb-10 opacity-90">
-            Join 120+ entrepreneurs who chose execution over endless planning.
+      {/* CTA Section (ZARA-style minimal) */}
+      <section className="section-padding bg-black text-white">
+        <div className="container-custom text-center">
+          <h2 className="text-display font-headline mb-8">Ready to Build?</h2>
+          <p className="text-body-lg text-neutral-300 mb-12 max-w-2xl mx-auto">
+            Start your business today. No meetings. No delays. Just results.
           </p>
-          <a href="#pricing" className="inline-block bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition">
-            Start Building Today →
+          <a href="#pricing" className="inline-block px-12 py-5 bg-white text-black text-sm uppercase tracking-luxury hover:bg-neutral-100 transition-all duration-300">
+            Get Started Now
           </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      {/* Footer (ZARA-style minimal) */}
+      <footer className="border-t border-neutral-200 py-12">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-4 gap-12">
             <div>
-              <div className="text-2xl font-bold mb-4">🚀 LaunchKit AI</div>
-              <p className="text-gray-400 text-sm">
-                Autonomous AI that builds businesses while you sleep.
+              <div className="text-2xl font-headline mb-4">LAUNCHKIT</div>
+              <p className="text-caption text-neutral-600">
+                Autonomous business building through AI.
               </p>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Product</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#features" className="hover:text-white transition">Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
-                <li><a href="#testimonials" className="hover:text-white transition">Testimonials</a></li>
-                <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
-              </ul>
+              <h4 className="text-sm uppercase tracking-luxury mb-4">Product</h4>
+              <div className="space-y-3">
+                <a href="#process" className="block text-caption text-neutral-600 hover:text-black transition">How It Works</a>
+                <a href="#pricing" className="block text-caption text-neutral-600 hover:text-black transition">Pricing</a>
+                <a href="#clients" className="block text-caption text-neutral-600 hover:text-black transition">Case Studies</a>
+              </div>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="/about" className="hover:text-white transition">About</a></li>
-                <li><a href="/blog" className="hover:text-white transition">Blog</a></li>
-                <li><a href="/case-studies" className="hover:text-white transition">Case Studies</a></li>
-                <li><a href="mailto:hello@launchkit.ai" className="hover:text-white transition">Contact</a></li>
-              </ul>
+              <h4 className="text-sm uppercase tracking-luxury mb-4">Company</h4>
+              <div className="space-y-3">
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">About</a>
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">Contact</a>
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">Terms</a>
+              </div>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Legal</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="/terms" className="hover:text-white transition">Terms of Service</a></li>
-                <li><a href="/privacy" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="/refund" className="hover:text-white transition">Refund Policy</a></li>
-              </ul>
+              <h4 className="text-sm uppercase tracking-luxury mb-4">Follow</h4>
+              <div className="space-y-3">
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">Twitter</a>
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">LinkedIn</a>
+                <a href="#" className="block text-caption text-neutral-600 hover:text-black transition">GitHub</a>
+              </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2026 LaunchKit AI. Built by AI, for builders.</p>
+          <div className="mt-12 pt-8 border-t border-neutral-200 text-center text-caption text-neutral-500">
+            © 2026 LaunchKit AI. Built with speed.
           </div>
         </div>
       </footer>

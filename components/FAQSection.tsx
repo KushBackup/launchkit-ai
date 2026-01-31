@@ -11,18 +11,21 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
   return (
-    <div className="border-b border-gray-200 last:border-0">
+    <div className="border-b border-neutral-200 last:border-0">
       <button
         onClick={onToggle}
-        className="w-full text-left py-6 flex justify-between items-start gap-4 hover:text-primary transition"
+        className="w-full text-left py-8 flex justify-between items-start gap-6 hover:opacity-70 transition"
       >
-        <span className="font-semibold text-lg">{question}</span>
-        <span className="text-2xl flex-shrink-0 transform transition-transform" style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0)" }}>
+        <span className="font-headline text-xl">{question}</span>
+        <span 
+          className="text-2xl flex-shrink-0 transition-transform duration-300" 
+          style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0)" }}
+        >
           +
         </span>
       </button>
       {isOpen && (
-        <div className="pb-6 text-gray-600 leading-relaxed">
+        <div className="pb-8 text-body text-neutral-600 leading-relaxed">
           {answer}
         </div>
       )}
@@ -42,72 +45,62 @@ export default function FAQSection({ items }: FAQSectionProps) {
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (
-    <section id="faq" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Everything you need to know about launching your business with LaunchKit AI.
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          {/* Category tabs */}
-          <div className="flex flex-wrap gap-3 mb-8 justify-center">
-            {items.map((category) => (
-              <button
-                key={category.category}
-                onClick={() => {
-                  setOpenCategory(category.category);
-                  setOpenQuestion(null);
-                }}
-                className={`px-6 py-3 rounded-lg font-semibold transition ${
-                  openCategory === category.category
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {category.category}
-              </button>
-            ))}
-          </div>
-
-          {/* Questions */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200">
-            {items
-              .find((cat) => cat.category === openCategory)
-              ?.questions.map((item, index) => (
-                <FAQItem
-                  key={index}
-                  question={item.q}
-                  answer={item.a}
-                  isOpen={openQuestion === `${openCategory}-${index}`}
-                  onToggle={() =>
-                    setOpenQuestion(
-                      openQuestion === `${openCategory}-${index}`
-                        ? null
-                        : `${openCategory}-${index}`
-                    )
-                  }
-                />
-              ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-4">
-              Still have questions? We"re here to help.
-            </p>
-            <a
-              href="mailto:hello@launchkit.ai"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark font-semibold text-lg"
-            >
-              📧 Contact us at hello@launchkit.ai
-            </a>
-          </div>
-        </div>
+    <div>
+      {/* Category tabs - ZARA-style minimal */}
+      <div className="flex flex-wrap gap-6 mb-12 justify-center">
+        {items.map((category) => (
+          <button
+            key={category.category}
+            onClick={() => {
+              setOpenCategory(category.category);
+              setOpenQuestion(null);
+            }}
+            className={`
+              text-caption uppercase tracking-luxury pb-2 border-b-2 transition-all duration-300
+              ${openCategory === category.category
+                ? "border-black text-black"
+                : "border-transparent text-neutral-500 hover:text-black"
+              }
+            `}
+          >
+            {category.category}
+          </button>
+        ))}
       </div>
-    </section>
+
+      {/* Questions - Clean accordion */}
+      <div className="border-t border-neutral-200">
+        {items
+          .find((cat) => cat.category === openCategory)
+          ?.questions.map((item, index) => (
+            <FAQItem
+              key={index}
+              question={item.q}
+              answer={item.a}
+              isOpen={openQuestion === `${openCategory}-${index}`}
+              onToggle={() =>
+                setOpenQuestion(
+                  openQuestion === `${openCategory}-${index}`
+                    ? null
+                    : `${openCategory}-${index}`
+                )
+              }
+            />
+          ))}
+      </div>
+
+      {/* Contact CTA */}
+      <div className="mt-16 text-center">
+        <p className="text-body text-neutral-600 mb-4">
+          Need more information?
+        </p>
+        <a
+          href="mailto:hello@launchkit.ai"
+          className="text-sm uppercase tracking-luxury text-black hover:opacity-70 transition border-b border-black pb-1"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
   );
 }

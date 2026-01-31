@@ -2,16 +2,33 @@
 
 import { useState } from "react";
 
-interface PricingCardProps {
+interface PricingPlan {
   name: string;
-  price: number;
-  priceId: string;
+  tagline?: string;
+  price?: number;
+  monthlyPrice?: number;
+  annualPrice?: number;
+  priceId: string | { monthly: string; annual: string };
   features: string[];
   popular?: boolean;
+  limits?: string[];
+  monthlySavings?: number;
+  annualSavings?: number;
+  valueDelivered?: string;
+  popularFor?: string;
 }
 
-export default function PricingCard({ name, price, priceId, features, popular }: PricingCardProps) {
+interface PricingCardProps {
+  plan: PricingPlan;
+  index: number;
+}
+
+export default function PricingCard({ plan, index }: PricingCardProps) {
   const [loading, setLoading] = useState(false);
+  
+  // Handle both price structures (simple price or monthly/annual)
+  const displayPrice = plan.price || plan.monthlyPrice || 0;
+  const actualPriceId = typeof plan.priceId === 'string' ? plan.priceId : plan.priceId.monthly;
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -19,7 +36,7 @@ export default function PricingCard({ name, price, priceId, features, popular }:
       const response = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priceId, plan: name }),
+        body: JSON.stringify({ priceId: actualPriceId, plan: plan.name }),
       });
       
       const { url } = await response.json();
@@ -33,34 +50,44 @@ export default function PricingCard({ name, price, priceId, features, popular }:
   };
 
   return (
-    <div className={`border-2 rounded-xl p-8 hover:shadow-lg transition ${
-      popular 
-        ? "border-primary bg-gradient-to-b from-indigo-50 to-white transform scale-105 shadow-xl" 
-        : "border-gray-200 hover:border-primary"
-    }`}>
-      {popular && (
-        <div className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">
-          ⭐ MOST POPULAR
+    <div 
+      className={`
+        border border-neutral-300 bg-white p-10 
+        hover:shadow-2xl transition-all duration-500
+        ${plan.popular ? 'md:-translate-y-4 shadow-xl' : ''}
+      `}
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      {plan.popular && (
+        <div className="text-caption uppercase tracking-luxury text-neutral-600 mb-4 pb-4 border-b border-neutral-200">
+          Recommended
         </div>
       )}
-      <h3 className="text-3xl font-bold mb-2">{name}</h3>
-      <div className="text-5xl font-bold text-primary mb-6">
-        ${price}<span className="text-xl text-gray-600">/mo</span>
+      
+      <h3 className="text-subtitle font-headline mb-4">{plan.name}</h3>
+      
+      <div className="mb-8">
+        <div className="flex items-baseline">
+          <span className="text-5xl font-headline">${displayPrice}</span>
+          <span className="text-caption text-neutral-500 ml-2">one-time</span>
+        </div>
       </div>
-      <ul className="space-y-3 mb-8 text-left">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-start">
-            <span className="text-green-500 font-bold mr-2">✓</span>
-            <span className="text-gray-700">{feature}</span>
+      
+      <ul className="space-y-4 mb-10">
+        {plan.features.map((feature, i) => (
+          <li key={i} className="flex items-start text-body text-neutral-700">
+            <span className="text-neutral-400 mr-3 text-sm">—</span>
+            <span>{feature}</span>
           </li>
         ))}
       </ul>
+      
       <button
         onClick={handleCheckout}
         disabled={loading}
-        className="block w-full bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed text-white text-center px-6 py-3 rounded-lg font-semibold transition"
+        className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? "Loading..." : "Get Started"}
+        {loading ? "Processing..." : "Select Plan"}
       </button>
     </div>
   );

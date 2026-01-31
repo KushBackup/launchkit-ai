@@ -11,7 +11,7 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
   return (
-    <div className="border-b border-neutral-200 last:border-0">
+    <div className="border-b border-neutral-200 last:border-0 animate-fade-in" style={{ animationDelay: '60ms' }}>
       <button
         onClick={onToggle}
         className="w-full text-left py-8 flex justify-between items-start gap-6 hover:opacity-70 transition"
@@ -25,7 +25,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
         </span>
       </button>
       {isOpen && (
-        <div className="pb-8 text-body text-neutral-600 leading-relaxed">
+        <div className="pb-8 text-body text-neutral-600 leading-relaxed animate-slide-up" style={{ animationDelay: '120ms' }}>
           {answer}
         </div>
       )}
@@ -45,7 +45,7 @@ export default function FAQSection({ items }: FAQSectionProps) {
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (
-    <div>
+    <div className="animate-fade-in">
       {/* Category tabs - ZARA-style minimal */}
       <div className="flex flex-wrap gap-6 mb-12 justify-center">
         {items.map((category) => (
@@ -90,7 +90,7 @@ export default function FAQSection({ items }: FAQSectionProps) {
       </div>
 
       {/* Contact CTA */}
-      <div className="mt-16 text-center">
+      <div className="mt-16 text-center animate-pop" style={{ animationDelay: '160ms' }}>
         <p className="text-body text-neutral-600 mb-4">
           Need more information?
         </p>

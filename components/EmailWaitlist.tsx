@@ -35,7 +35,7 @@ export default function EmailWaitlist() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-8 max-w-lg mx-auto">
+    <div className="bg-white rounded-2xl shadow-md p-8 max-w-lg mx-auto animate-fade-in" style={{ animationDelay: '100ms' }}>
       <h3 className="text-2xl font-bold mb-4 text-center">
         🎯 Join the Waitlist
       </h3>
@@ -43,7 +43,7 @@ export default function EmailWaitlist() {
         Get early access and a <span className="font-bold text-primary">50% discount</span> for the first month.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 animate-slide-up" style={{ animationDelay: '200ms' }}>
         <input
           type="email"
           value={email}
@@ -57,7 +57,8 @@ export default function EmailWaitlist() {
         <button
           type="submit"
           disabled={status === "loading" || status === "success"}
-          className="w-full bg-primary hover:bg-primary-dark text-white py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary hover:bg-primary-dark text-white py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed animate-pop"
+          style={{ animationDelay: '300ms' }}
         >
           {status === "loading"
             ? "Joining..."

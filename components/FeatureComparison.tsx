@@ -25,7 +25,7 @@ export default function FeatureComparison({ competitors, categories }: FeatureCo
   };
 
   return (
-    <div>
+    <div className="animate-fade-in">
       <div className="text-center mb-16">
         <h2 className="text-display font-headline mb-6">How We Compare</h2>
         <p className="text-body text-neutral-600 max-w-2xl mx-auto">
@@ -93,7 +93,8 @@ export default function FeatureComparison({ competitors, categories }: FeatureCo
       <div className="mt-16 text-center">
         <a
           href="#pricing"
-          className="btn-primary inline-block"
+          className="btn-primary inline-block animate-pop"
+          style={{ animationDelay: '200ms' }}
         >
           Get Started with LaunchKit
         </a>

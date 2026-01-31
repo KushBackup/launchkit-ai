@@ -52,6 +52,7 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
   return (
     <div 
       className={`
+        animate-fade-in
         border border-neutral-300 bg-white p-10 
         hover:shadow-2xl transition-all duration-500
         ${plan.popular ? 'md:-translate-y-4 shadow-xl' : ''}

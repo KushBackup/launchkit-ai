@@ -28,11 +28,11 @@ export default function SocialProofStats({
   ];
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section className="py-16 bg-black text-white animate-fade-in">
       <div className="container-custom">
         <div className="grid grid-cols-3 gap-12 text-center">
           {stats.map((stat, index) => (
-            <div key={index}>
+            <div key={index} style={{ animationDelay: `${index * 100}ms` }} className="animate-pop">
               <div className="text-5xl font-headline mb-3">
                 {stat.value}
               </div>

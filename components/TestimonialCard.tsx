@@ -16,7 +16,7 @@ export default function TestimonialCard({
   verified,
 }: TestimonialCardProps) {
   return (
-    <div className="bg-white border border-neutral-300 p-10 hover:shadow-lg transition-all duration-500">
+    <div className="animate-fade-in bg-white border border-neutral-300 p-10 hover:shadow-lg transition-all duration-500">
       {/* Minimal Header */}
       <div className="mb-8 pb-6 border-b border-neutral-200">
         <div className="flex items-center gap-2 mb-2">

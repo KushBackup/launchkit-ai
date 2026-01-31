@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Slightly longer entrance duration and smoother easing for a luxury feel */
+  --anim-duration: 360ms;
+  --anim-ease: cubic-bezier(.22,.12,.08,1);
+  /* keep pop animation short and responsive (pop uses explicit 260ms)
+     Focus color is adjustable via variable for light/dark themes */
+  --focus-color: rgba(59,130,246,0.95);
+}
+
 @layer base {
   /* ZARA-style smooth scrolling */
   html {
@@ -24,19 +33,22 @@
   /* ZARA-style button (minimal, sophisticated) */
   .btn-primary {
     @apply px-8 py-4 bg-black text-white text-sm uppercase tracking-widest 
-           hover:bg-neutral-800 transition-all duration-300 
-           border border-black;
+           hover:bg-neutral-800 transition-colors duration-300 
+           border border-black transform-gpu;
+    will-change: transform, box-shadow, opacity;
   }
   
   .btn-secondary {
     @apply px-8 py-4 bg-white text-black text-sm uppercase tracking-widest 
-           hover:bg-neutral-50 transition-all duration-300 
-           border border-black;
+           hover:bg-neutral-50 transition-colors duration-300 
+           border border-black transform-gpu;
+    will-change: transform, box-shadow, opacity;
   }
   
   /* Luxury card hover effect */
   .card-hover {
-    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-1;
+    @apply transition-transform duration-500;
+    will-change: transform, box-shadow;
   }
   
   /* Section padding (generous like ZARA) */
@@ -51,44 +63,115 @@
 }
 
 @layer utilities {
-  /* Fade-in animation */
+  /* Core animation utilities */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn var(--anim-duration) var(--anim-ease) both;
+    animation-delay: var(--animation-delay, 0ms);
+    will-change: opacity, transform;
   }
   
-  /* Slide-up animation */
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp var(--anim-duration) var(--anim-ease) both;
+    animation-delay: var(--animation-delay, 0ms);
+    will-change: opacity, transform;
   }
   
-  /* Text balance (better typography) */
+  .animate-pop {
+    animation: pop 260ms var(--anim-ease) both;
+    animation-delay: var(--animation-delay, 0ms);
+    will-change: transform, opacity;
+  }
+  
+  /* Only float when explicitly used. Pause on hover/focus to reduce perceptual noise. */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+  }
+  /* Pause float on hover/focus for better usability */
+  .animate-float:hover,
+  .animate-float:focus-within {
+    animation-play-state: paused;
+  }
+  
+  /* Text balance — experimental; keep as optional enhancement only */
   .text-balance {
+    /* experimental — optional fallback: control max-width to avoid bad wraps */
     text-wrap: balance;
   }
   
-  /* Luxury letter spacing */
+  /* Luxury letter spacing — smaller on small text for legibility */
   .tracking-luxury {
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
+  }
+  @media (min-width: 1024px) {
+    .tracking-luxury { letter-spacing: 0.1em; }
   }
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
+  from { transform: translateY(18px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* ZARA-style smooth transitions */
-* {
-  @apply transition-colors duration-300;
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.98); }
+  60% { transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Remove default focus ring, add elegant one */
-*:focus-visible {
-  @apply outline-none ring-1 ring-neutral-300 ring-offset-2;
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* Scoped transitions (avoid heavy global paint costs) */
+*:where(:not(img):not(svg):not(video)) {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: 300ms;
+  transition-timing-function: var(--anim-ease);
+}
+
+/* Slightly stronger focus ring for better visibility on small controls */
+:focus-visible {
+  outline: 4px solid var(--focus-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(59,130,246,0.08);
+}
+
+/* prefers-reduced-motion: disable all non-essential motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-pop,
+  .animate-float {
+    animation: none !important;
+  }
+
+  *:where(:not(img):not(svg):not(video)) {
+    transition: none !important;
+  }
+}
+
+/* Ensure small UI transforms (like FAQ chevrons) do not rotate for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .faq-chevron,
+  .rotate-on-open {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Minor helpers */
+.will-change-opacity {
+  will-change: opacity;
+}
+.will-change-transform {
+  will-change: transform;
 }

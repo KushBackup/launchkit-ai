@@ -18,7 +18,7 @@ export default function CheckoutButton({ priceId, plan }: { priceId: string; pla
   return (
     <button
       onClick={handleCheckout}
-      className="block w-full bg-primary hover:bg-primary-dark text-white text-center px-6 py-3 rounded-lg font-semibold transition"
+      className="block w-full bg-primary hover:bg-primary-dark text-white text-center px-6 py-3 rounded-lg font-semibold transition animate-pop"
     >
       Get Started
     </button>

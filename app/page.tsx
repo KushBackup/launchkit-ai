@@ -14,16 +14,16 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* ZARA-style Minimal Header */}
       <header className="border-b border-neutral-200 sticky top-0 bg-white/95 backdrop-blur-sm z-50">
-        <div className="container-custom py-6">
+        <div className="container-custom py-6 animate-fade-in" style={{ animationDelay: '20ms' }}>
           <div className="flex justify-between items-center">
             <div className="text-2xl font-headline tracking-tight">LAUNCHKIT</div>
             <nav className="hidden md:flex space-x-10">
-              <a href="#philosophy" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Philosophy</a>
-              <a href="#process" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Process</a>
-              <a href="#pricing" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Pricing</a>
-              <a href="#clients" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition">Clients</a>
+              <a href="#philosophy" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition animate-fade-in" style={{ animationDelay: '40ms' }}>Philosophy</a>
+              <a href="#process" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition animate-fade-in" style={{ animationDelay: '60ms' }}>Process</a>
+              <a href="#pricing" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition animate-fade-in" style={{ animationDelay: '80ms' }}>Pricing</a>
+              <a href="#clients" className="text-sm uppercase tracking-luxury text-neutral-600 hover:text-black transition animate-fade-in" style={{ animationDelay: '100ms' }}>Clients</a>
             </nav>
-            <a href="#pricing" className="btn-primary">
+            <a href="#pricing" className="btn-primary animate-pop" style={{ animationDelay: '120ms' }}>
               Begin
             </a>
           </div>
@@ -41,10 +41,10 @@ export default function Home() {
               Autonomous AI execution. From concept to deployed product to closed deals. No meetings. No delays. Just results.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <a href="#pricing" className="btn-primary">
+              <a href="#pricing" className="btn-primary animate-pop" style={{ animationDelay: '140ms' }}>
                 Start Building
               </a>
-              <a href="#process" className="btn-secondary">
+              <a href="#process" className="btn-secondary animate-pop" style={{ animationDelay: '160ms' }}>
                 Our Process
               </a>
             </div>
@@ -76,7 +76,7 @@ export default function Home() {
                 No hand-holding. No back-and-forth. Just pure execution.
               </p>
             </div>
-            <div className="aspect-[4/5] bg-neutral-200 rounded-sm"></div>
+            <div className="aspect-[4/5] bg-neutral-200 rounded-sm animate-fade-in" style={{ animationDelay: '100ms' }}></div>
           </div>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function Home() {
                 deliverables: ["100+ Leads", "Email Campaigns", "Launch Strategy", "Customer Acquisition"]
               }
             ].map((step) => (
-              <div key={step.num} className="grid md:grid-cols-12 gap-8 items-start">
+              <div key={step.num} className="grid md:grid-cols-12 gap-8 items-start animate-fade-in" style={{ animationDelay: '100ms' }}>
                 <div className="md:col-span-2">
                   <div className="text-6xl font-headline text-neutral-300">{step.num}</div>
                 </div>
@@ -147,7 +147,7 @@ export default function Home() {
               { icon: "🚀", title: "Launch Strategy", desc: "Product Hunt. Social media. Maximum reach." },
               { icon: "💰", title: "Investor Outreach", desc: "Pitch decks. Warm intros. Fundraising support." }
             ].map((item, i) => (
-              <div key={i} className="bg-white p-10 hover:bg-neutral-50 transition-all duration-300 group">
+              <div key={i} className="bg-white p-10 hover:bg-neutral-50 transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${i * 80}ms` }}>
                 <div className="text-4xl mb-6">{item.icon}</div>
                 <h3 className="text-subtitle font-headline mb-3 group-hover:text-primary transition">{item.title}</h3>
                 <p className="text-body text-neutral-600">{item.desc}</p>
@@ -203,14 +203,14 @@ export default function Home() {
           <p className="text-body-lg text-neutral-300 mb-12 max-w-2xl mx-auto">
             Start your business today. No meetings. No delays. Just results.
           </p>
-          <a href="#pricing" className="inline-block px-12 py-5 bg-white text-black text-sm uppercase tracking-luxury hover:bg-neutral-100 transition-all duration-300">
+          <a href="#pricing" className="inline-block px-12 py-5 bg-white text-black text-sm uppercase tracking-luxury hover:bg-neutral-100 transition-all duration-300 animate-pop" style={{ animationDelay: '140ms' }}>
             Get Started Now
           </a>
         </div>
       </section>
 
       {/* Footer (ZARA-style minimal) */}
-      <footer className="border-t border-neutral-200 py-12">
+      <footer className="border-t border-neutral-200 py-12 animate-fade-in" style={{ animationDelay: '60ms' }}>
         <div className="container-custom">
           <div className="grid md:grid-cols-4 gap-12">
             <div>

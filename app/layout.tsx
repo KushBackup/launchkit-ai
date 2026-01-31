@@ -34,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
-      <body className="antialiased font-body bg-white text-neutral-900">{children}</body>
+      <body className="antialiased font-body bg-white text-neutral-900">
+        <div className="page-container animate-fade-in">{children}</div>
+      </body>
     </html>
   );
 }

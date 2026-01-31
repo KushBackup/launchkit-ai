@@ -1,5 +1,7 @@
 "use client";
 
+import React from 'react';
+
 interface FeatureComparisonProps {
   competitors: Array<{ name: string; isUs?: boolean; price?: string }>;
   categories: Array<{
@@ -62,8 +64,8 @@ export default function FeatureComparison({
             </thead>
             <tbody>
               {categories.map((category, catIndex) => (
-                <>
-                  <tr key={`cat-${catIndex}`} className="bg-gray-100">
+                <React.Fragment key={`cat-${catIndex}`}>
+                  <tr className="bg-gray-100">
                     <td
                       colSpan={competitors.length + 1}
                       className="p-4 font-bold text-lg"
@@ -89,7 +91,7 @@ export default function FeatureComparison({
                       ))}
                     </tr>
                   ))}
-                </>
+                </React.Fragment>
               ))}
             </tbody>
           </table>

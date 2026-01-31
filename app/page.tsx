@@ -1,4 +1,57 @@
+import PricingCard from '@/components/PricingCard';
+import { STRIPE_PRICES } from '@/lib/stripe-config';
+
 export default function Home() {
+  const pricingPlans = [
+    {
+      name: 'Starter',
+      price: 99,
+      priceId: STRIPE_PRICES.starter,
+      features: [
+        '1 business project/month',
+        'Market research report',
+        'Simple landing page',
+        'Basic MVP',
+        '50 qualified leads',
+        'Launch support',
+        'Email support'
+      ]
+    },
+    {
+      name: 'Growth',
+      price: 299,
+      priceId: STRIPE_PRICES.growth,
+      popular: true,
+      features: [
+        '2 active projects',
+        'Complete business launch',
+        'Full landing page + brand',
+        'MVP web app',
+        '200 qualified leads/month',
+        'Cold email campaigns (50)',
+        'Investor pitch deck',
+        '10 investor intros',
+        'Priority support'
+      ]
+    },
+    {
+      name: 'Scale',
+      price: 599,
+      priceId: STRIPE_PRICES.scale,
+      features: [
+        '3+ active projects',
+        'Custom design',
+        'Advanced MVP features',
+        '500 qualified leads/month',
+        'Automated outreach (100+)',
+        'Partnership sourcing',
+        '50 investor intros',
+        'Monthly strategy call',
+        '24/7 Slack support'
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -73,65 +126,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter */}
-            <div className="border-2 border-gray-200 rounded-xl p-8 hover:border-primary hover:shadow-lg transition">
-              <h3 className="text-3xl font-bold mb-2">Starter</h3>
-              <div className="text-5xl font-bold text-primary mb-6">
-                $99<span className="text-xl text-gray-600">/mo</span>
-              </div>
-              <ul className="space-y-3 mb-8 text-left">
-                {['1 business project/month', 'Market research report', 'Simple landing page', 'Basic MVP', '50 qualified leads', 'Launch support', 'Email support'].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="text-green-500 font-bold mr-2">✓</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="#" className="block w-full bg-primary hover:bg-primary-dark text-white text-center px-6 py-3 rounded-lg font-semibold transition">
-                Get Started
-              </a>
-            </div>
-
-            {/* Growth */}
-            <div className="border-2 border-primary rounded-xl p-8 bg-gradient-to-b from-indigo-50 to-white transform scale-105 shadow-xl">
-              <div className="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">
-                ⭐ MOST POPULAR
-              </div>
-              <h3 className="text-3xl font-bold mb-2">Growth</h3>
-              <div className="text-5xl font-bold text-primary mb-6">
-                $299<span className="text-xl text-gray-600">/mo</span>
-              </div>
-              <ul className="space-y-3 mb-8 text-left">
-                {['2 active projects', 'Complete business launch', 'Full landing page + brand', 'MVP web app', '200 qualified leads/month', 'Cold email campaigns (50)', 'Investor pitch deck', '10 investor intros', 'Priority support'].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="text-green-500 font-bold mr-2">✓</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="#" className="block w-full bg-primary hover:bg-primary-dark text-white text-center px-6 py-3 rounded-lg font-semibold transition">
-                Get Started
-              </a>
-            </div>
-
-            {/* Scale */}
-            <div className="border-2 border-gray-200 rounded-xl p-8 hover:border-primary hover:shadow-lg transition">
-              <h3 className="text-3xl font-bold mb-2">Scale</h3>
-              <div className="text-5xl font-bold text-primary mb-6">
-                $599<span className="text-xl text-gray-600">/mo</span>
-              </div>
-              <ul className="space-y-3 mb-8 text-left">
-                {['3+ active projects', 'Custom design', 'Advanced MVP features', '500 qualified leads/month', 'Automated outreach (100+)', 'Partnership sourcing', '50 investor intros', 'Monthly strategy call', '24/7 Slack support'].map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="text-green-500 font-bold mr-2">✓</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="#" className="block w-full bg-primary hover:bg-primary-dark text-white text-center px-6 py-3 rounded-lg font-semibold transition">
-                Get Started
-              </a>
-            </div>
+            {pricingPlans.map((plan) => (
+              <PricingCard key={plan.name} {...plan} />
+            ))}
           </div>
         </div>
       </section>

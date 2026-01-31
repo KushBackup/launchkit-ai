@@ -121,8 +121,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">How It Works</h2>
+          <div className="max-w-4xl mx-auto space-y-12">
+            {[
+              { step: '1', title: 'Share Your Idea', desc: 'Tell us your business concept in plain English. No business plan needed.' },
+              { step: '2', title: 'AI Builds Everything', desc: 'Our AI conducts market research, builds your product, generates leads, and creates marketing materials—all autonomously.' },
+              { step: '3', title: 'Launch & Grow', desc: 'We handle Product Hunt launch, cold outreach, investor connections. You focus on closing deals.' },
+              { step: '4', title: 'Get Your First Customer', desc: 'Within 2 weeks, you'll have a live product and qualified leads in your inbox. No coding, no guesswork.' }
+            ].map((item) => (
+              <div key={item.step} className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold">
+                  {item.step}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
-      <section id="pricing" className="py-20">
+      <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
